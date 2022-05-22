@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* Navbar styles */
+
+  .nav-btn {
+    @apply text-white hover:text-black hover:bg-white duration-300 px-5 py-3 cursor-pointer rounded;
+  }
+}
