@@ -15,7 +15,6 @@ const QuestionThree = () => {
         used to add new properties or methods to an existing object. It helps us
         to reuse the properties or methods from one javascript object to another
         object through a reference pointer fuction.
-        <br />
       </p>
       <hr />
     </div>

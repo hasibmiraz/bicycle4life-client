@@ -13,7 +13,7 @@ const QuestionTwo = () => {
         types of states to manage react states
         <br />
       </p>
-      <ul className="list-none">
+      <ul className="list-none mb-4">
         <li>
           <RiNumber1 className="inline-block" /> Local state
         </li>
