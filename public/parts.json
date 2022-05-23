@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Shimano Paddle",
+    "image": "https://static-01.daraz.com.bd/p/d4f3b97996e520ccf9b272c2d7d68040.jpg",
+    "description": "Very lightweight and durable paddle",
+    "minOrderQty": 300,
+    "availableQty": 1500,
+    "unitPrice": 15
+  },
+  {
+    "id": 2,
+    "name": "Tiger bar ends",
+    "image": "https://ae01.alicdn.com/kf/HTB1yRRkayLxK1Rjy0Ffq6zYdVXaZ/FOURIERS-Carbon-fiber-nylon-MTB-Mountain-Bike-Bar-Ends-Bicycle-Barends.jpg_Q90.jpg_.webp",
+    "description": "Very good grip of the product",
+    "minOrderQty": 400,
+    "availableQty": 3500,
+    "unitPrice": 20
+  },
+  {
+    "id": 3,
+    "name": "Bearing",
+    "image": "https://cdn.shopify.com/s/files/1/0111/7470/7264/files/bike-bearing-500x500.jpg",
+    "description": "Durable and long lasting product",
+    "minOrderQty": 500,
+    "availableQty": 6500,
+    "unitPrice": 8
+  },
+  {
+    "id": 4,
+    "name": "Pinion belt drive",
+    "image": "https://images.squarespace-cdn.com/content/v1/5913935ba5790aa5281dceb5/1618452255011-P3SRBKWWSIM3J7MIQA23/belt+kit.jpg?format=1000w",
+    "description": "Durable and very good quality",
+    "minOrderQty": 300,
+    "availableQty": 7500,
+    "unitPrice": 35
+  },
+  {
+    "id": 5,
+    "name": "Caliper brake",
+    "image": "https://image.made-in-china.com/202f0j00IfjGBWysneka/Bicycle-Parts-26-Bicycle-Caliper-Brake-Bike-Brake.jpg",
+    "description": "Very good suspense for brake",
+    "minOrderQty": 650,
+    "availableQty": 1200,
+    "unitPrice": 40
+  },
+  {
+    "id": 6,
+    "name": "Chain tensioner",
+    "image": "https://m.media-amazon.com/images/I/710cBKb6-gL._AC_SX425_.jpg",
+    "description": "Helps you to gear up",
+    "minOrderQty": 300,
+    "availableQty": 1500,
+    "unitPrice": 75
+  }
+]
