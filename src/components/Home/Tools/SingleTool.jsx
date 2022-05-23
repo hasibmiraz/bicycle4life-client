@@ -4,7 +4,7 @@ const SingleTool = ({ part }) => {
   const { image, name, description, minOrderQty, availableQty, unitPrice } =
     part;
   return (
-    <div className="card w-3/4 bg-base-100 shadow-xl mx-auto">
+    <div className="card w-11/12 md:w-3/4 bg-base-100 shadow-xl mx-auto">
       <figure>
         <img src={image} alt="Shoes" className="w-full h-72 object-cover p-6" />
       </figure>
