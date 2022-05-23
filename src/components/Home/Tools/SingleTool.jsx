@@ -4,13 +4,13 @@ const SingleTool = ({ part }) => {
   const { image, name, description, minOrderQty, availableQty, unitPrice } =
     part;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+    <div className="card w-3/4 bg-base-100 shadow-xl mx-auto">
       <figure>
         <img src={image} alt="Shoes" className="w-full h-72 object-cover p-6" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{name}</h2>
-        <p>{description}</p>
+        <h2 className="text-2xl">{name}</h2>
+        <p className="text-lg">{description}</p>
         <p>
           <span className="text-orange-400 font-semibold">
             Minimum Order Quantity:
