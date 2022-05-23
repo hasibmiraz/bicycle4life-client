@@ -7,7 +7,7 @@ import { MdRateReview, MdEventAvailable } from 'react-icons/md';
 const Summary = () => {
   return (
     <div className="my-20">
-      <h2 className="text-2xl md:text-4xl text-orange-500 font-bold md:font-semibold text-center font-mono">
+      <h2 className="text-2xl md:text-4xl text-orange-500 font-bold md:font-semibold text-center font-mono my-8">
         Our Business History
       </h2>
       <div className="flex justify-center">
