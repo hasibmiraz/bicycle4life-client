@@ -24,6 +24,7 @@ const Login = () => {
 
   const handleLogin = async ({ email, password }) => {
     await signInWithEmailAndPassword(email, password);
+    console.log(user);
   };
 
   // useEffect(() => {

@@ -1,7 +1,18 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { BsBicycle } from 'react-icons/bs';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 const Navbar = () => {
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOut(auth);
+    navigate('/');
+  };
+
   return (
     <div className="navbar bg-orange-400 px-4 md:px-8">
       {/* Small Screen menu */}
@@ -63,7 +74,7 @@ const Navbar = () => {
             <NavLink
               className={({ isActive }) =>
                 isActive
-                  ? 'px-7 py-1 bg-white text-orange-600'
+                  ? 'px-7 py-2 bg-white text-orange-600'
                   : 'px-7 text-white'
               }
               to="/blogs"
@@ -71,31 +82,61 @@ const Navbar = () => {
               Blogs
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? 'px-7 py-1 bg-white text-orange-600'
-                  : 'px-7 text-white'
-              }
-              to="/login"
-            >
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? 'px-7 py-1 bg-white text-orange-600'
-                  : 'px-7 text-white'
-              }
-              to="/register"
-            >
-              Register
-            </NavLink>
-          </li>
+          {!user && (
+            <>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'px-7 py-1 bg-white text-orange-600'
+                      : 'px-7 text-white'
+                  }
+                  to="/login"
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'px-7 py-2 bg-white text-orange-600'
+                      : 'px-7 text-white'
+                  }
+                  to="/register"
+                >
+                  Register
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
+        {user && (
+          <div className="dropdown dropdown-end">
+            <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img alt="user" src={user.photoURL} />
+              </div>
+            </label>
+            <ul
+              tabIndex="0"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <button onClick={handleSignOut}>Logout</button>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
