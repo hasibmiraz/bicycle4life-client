@@ -67,6 +67,32 @@ const Navbar = () => {
           Bicycle4Life
         </Link>
       </div>
+      {user && (
+        <div className="navbar-end flex md:hidden dropdown dropdown-end">
+          <label tabIndex="10" className="btn btn-ghost btn-circle avatar ml-2">
+            <div className="w-10 rounded-full">
+              <img alt="user" src={user.photoURL} />
+            </div>
+          </label>
+          <ul
+            tabIndex="10"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <a href="!@" className="justify-between">
+                Profile
+                <span className="badge">New</span>
+              </a>
+            </li>
+            <li>
+              <a href="!@">Settings</a>
+            </li>
+            <li>
+              <button onClick={handleSignOut}>Logout</button>
+            </li>
+          </ul>
+        </div>
+      )}
       {/* Big screen menu */}
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0 space-x-2">
@@ -113,7 +139,10 @@ const Navbar = () => {
         </ul>
         {user && (
           <div className="dropdown dropdown-end">
-            <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+            <label
+              tabIndex="0"
+              className="btn btn-ghost btn-circle avatar ml-2"
+            >
               <div className="w-10 rounded-full">
                 <img alt="user" src={user.photoURL} />
               </div>
@@ -123,13 +152,13 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
+                <a href="!@" className="justify-between">
                   Profile
                   <span className="badge">New</span>
                 </a>
               </li>
               <li>
-                <a>Settings</a>
+                <a href="!@">Settings</a>
               </li>
               <li>
                 <button onClick={handleSignOut}>Logout</button>
