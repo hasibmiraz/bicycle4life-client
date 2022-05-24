@@ -19,7 +19,7 @@ const HomePageReviews = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {reviews
-          .slice(-6)
+          .slice(0)
           .reverse()
           .map((review) => (
             <HomePageReview key={review._id} review={review} />
