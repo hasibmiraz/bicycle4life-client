@@ -5,6 +5,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import MyOrders from '../Dashboard/MyOrders';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
+import NotFound from '../NotFound/NotFound';
 import Purchase from '../Puchase/Purchase';
 import Register from '../Register/Register';
 import RequireAuth from '../RequireAuth/RequireAuth';
@@ -35,6 +36,7 @@ const Routers = () => {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

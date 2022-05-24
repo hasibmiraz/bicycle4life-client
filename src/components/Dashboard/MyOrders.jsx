@@ -15,9 +15,9 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery('orders', () =>
-    fetch(`http://localhost:5000/part-orders?email=${user.email}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `https://stark-basin-34233.herokuapp.com/part-orders?email=${user.email}`
+    ).then((res) => res.json())
   );
 
   if (isLoading) return <Loading />;

@@ -37,7 +37,7 @@ const Purchase = () => {
       paid: false,
     };
 
-    fetch('http://localhost:5000/part', {
+    fetch('https://stark-basin-34233.herokuapp.com/part', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
