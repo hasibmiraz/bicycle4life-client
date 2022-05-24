@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import Title from '../Title/Title';
@@ -10,6 +11,7 @@ import Title from '../Title/Title';
 const Purchase = () => {
   const { partsId } = useParams();
   const [user] = useAuthState(auth);
+  const [loading, setLoading] = useState(false);
   const {
     register,
     formState: { errors },
@@ -27,7 +29,34 @@ const Purchase = () => {
     )
   );
 
-  const onSubmit = async ({ email, password, name }) => {
+  const onSubmit = async ({ address, phone, orderQty }) => {
+    setLoading(true);
+    const order = {
+      name: user.displayName,
+      email: user.email,
+      address,
+      phone,
+      orderQty,
+      paid: false,
+    };
+
+    fetch('http://localhost:5000/part', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success('Order confirmed!');
+          setLoading(false);
+        } else {
+          toast.error('There was an error! Please try again.');
+          setLoading(false);
+        }
+      });
     reset();
     refetch();
   };
@@ -183,7 +212,7 @@ const Purchase = () => {
                     message: `You can not order more than ${part.availableQty} pieces`,
                   },
                   min: {
-                    value: part.availableQty,
+                    value: part.minOrderQty,
                     message: `You can not order less than ${part.minOrderQty} pieces`,
                   },
                 })}
@@ -212,7 +241,10 @@ const Purchase = () => {
             </div>
             <div className="w-full max-w-xs mx-auto">
               <button
-                className={`btn rounded w-full text-white bg-orange-400 border-none mx-auto hover:scale-105 duration-200`}
+                disabled={loading}
+                className={`btn rounded w-full text-white bg-orange-400 border-none mx-auto hover:scale-105 duration-200 ${
+                  loading && 'loading'
+                }`}
                 type="submit"
               >
                 Confirm Order

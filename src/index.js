@@ -7,6 +7,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
@@ -15,6 +17,7 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <HelmetProvider>
+          <ToastContainer />
           <App />
           <ReactQueryDevtools initialIsOpen={false} />
         </HelmetProvider>
