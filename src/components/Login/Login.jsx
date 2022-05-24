@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init.js';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 // import useToken from '../../hooks/useToken.js';
 import Title from '../Title/Title.jsx';
 import GoogleSignIn from '../GoogleSignIn/GoogleSignIn.jsx';
@@ -12,9 +12,9 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   // const [token] = useToken(user);
 
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // let from = location.state?.from?.pathname || '/';
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || '/';
 
   const {
     register,
@@ -26,6 +26,9 @@ const Login = () => {
     await signInWithEmailAndPassword(email, password);
     console.log(user);
   };
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   // useEffect(() => {
   //   if (token) {

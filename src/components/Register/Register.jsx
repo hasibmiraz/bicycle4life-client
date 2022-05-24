@@ -5,7 +5,7 @@ import {
   useUpdateProfile,
 } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init.js';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Title from '../Title/Title.jsx';
 import GoogleSignIn from '../GoogleSignIn/GoogleSignIn.jsx';
 
@@ -33,6 +33,14 @@ const Register = () => {
     errorMessage = (
       <p className="text-red-600 text-center">Authentication failed</p>
     );
+  }
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || '/';
+
+  if (user) {
+    navigate(from, { replace: true });
   }
 
   return (
