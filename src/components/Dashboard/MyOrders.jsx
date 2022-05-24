@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 import Title from '../Title/Title';
+import DeleteOrderModal from './DeleteOrderModal';
+import OrdersRow from './OrdersRow';
 
 const MyOrders = () => {
+  const [deletingOrder, setDeletingOrder] = useState(null);
   const [user] = useAuthState(auth);
-  const [orders, setOrders] = useState([]);
-  useEffect(() => {
-    if (user) {
-      fetch(`http://localhost:5000/part-orders?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => setOrders(data));
-    }
-  }, [user]);
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery('orders', () =>
+    fetch(`http://localhost:5000/part-orders?email=${user.email}`).then((res) =>
+      res.json()
+    )
+  );
+
+  if (isLoading) return <Loading />;
+
   return (
     <div>
       <Title title="My Orders" />
@@ -32,36 +41,22 @@ const MyOrders = () => {
             {/* <!-- row 1 --> */}
 
             {orders.map((order, i) => (
-              <tr>
-                <td key={order._id}>{i + 1}</td>
-                <td>{order.product}</td>
-                <td>{order.orderQty}</td>
-                <td>
-                  {order.paid ? (
-                    <button className="btn btn-outline btn-success" disabled>
-                      Paid
-                    </button>
-                  ) : (
-                    <button className="btn btn-outline btn-warning rounded">
-                      Pay Now
-                    </button>
-                  )}
-                </td>
-                <td>
-                  {order.paid ? (
-                    <button className="btn" disabled>
-                      Processed
-                    </button>
-                  ) : (
-                    <button className="btn btn-outline btn-error rounded">
-                      Cancel Order
-                    </button>
-                  )}
-                </td>
-              </tr>
+              <OrdersRow
+                key={order._id}
+                order={order}
+                i={i}
+                setDeletingOrder={setDeletingOrder}
+              />
             ))}
           </tbody>
         </table>
+        {deletingOrder && (
+          <DeleteOrderModal
+            deletingOrder={deletingOrder}
+            setDeletingOrder={setDeletingOrder}
+            refetch={refetch}
+          />
+        )}
       </div>
     </div>
   );
