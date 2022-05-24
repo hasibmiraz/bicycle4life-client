@@ -5,7 +5,7 @@ import HomePageReview from './HomePageReview';
 
 const HomePageReviews = () => {
   const { data: reviews, isLoading } = useQuery('home-page-reviews', () =>
-    fetch('reviews.json').then((res) => res.json())
+    fetch('http://localhost:5000/review').then((res) => res.json())
   );
 
   if (isLoading) return <Loading />;
@@ -17,7 +17,7 @@ const HomePageReviews = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {reviews
-          .slice(0)
+          .slice(-6)
           .reverse()
           .map((review) => (
             <HomePageReview key={review._id} review={review} />

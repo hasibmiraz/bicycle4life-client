@@ -4,7 +4,7 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 const HomePageReview = ({ review }) => {
   const { image, name, description, rating } = review;
   return (
-    <div className="mx-auto">
+    <div className="mx-auto w-11/12 md:w-3/4">
       <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-20">
         <div className="flex justify-center md:justify-end -mt-16">
           <img

@@ -5,7 +5,7 @@ import SingleTool from './SingleTool';
 
 const Tools = () => {
   const { data: parts, isLoading } = useQuery('home-page-products', () =>
-    fetch('parts.json').then((res) => res.json())
+    fetch('http://localhost:5000/part').then((res) => res.json())
   );
 
   if (isLoading) return <Loading />;
@@ -16,9 +16,12 @@ const Tools = () => {
         Available Parts
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
-        {parts.map((part) => (
-          <SingleTool key={part.id} part={part} />
-        ))}
+        {parts
+          .slice(-6)
+          .reverse()
+          .map((part) => (
+            <SingleTool key={part._id} part={part} />
+          ))}
       </div>
     </>
   );
