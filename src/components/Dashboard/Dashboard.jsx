@@ -12,10 +12,12 @@ const Dashboard = () => {
         />
         <div className="drawer-content">
           {/* <!-- Page content here --> */}
-          <h2 className="text-3xl font-semibold text-orange-500 ml-16 mt-6">
+          <h2 className="text-3xl font-semibold text-orange-500 mx-4 md:mx-16 mt-6">
             Dashboard
           </h2>
-          <Outlet />
+          <div className="mx-4 md:mx-16">
+            <Outlet />
+          </div>
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>

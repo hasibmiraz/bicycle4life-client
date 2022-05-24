@@ -19,11 +19,7 @@ const Purchase = () => {
     reset,
   } = useForm();
 
-  const {
-    data: part,
-    isLoading,
-    refetch,
-  } = useQuery('single-part', () =>
+  const { data: part, isLoading } = useQuery('single-part', () =>
     fetch(`https://stark-basin-34233.herokuapp.com/part/${partsId}`).then(
       (res) => res.json()
     )
@@ -34,6 +30,7 @@ const Purchase = () => {
     const order = {
       name: user.displayName,
       email: user.email,
+      product: part.name,
       address,
       phone,
       orderQty,
@@ -58,7 +55,6 @@ const Purchase = () => {
         }
       });
     reset();
-    refetch();
   };
 
   if (isLoading) return <Loading />;
