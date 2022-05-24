@@ -32,35 +32,52 @@ const Navbar = () => {
                     ? 'px-5 py-2 bg-white text-black font-semibold rounded'
                     : 'text-white'
                 }
+                to="/"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? 'px-5 py-2 bg-white text-black font-semibold rounded'
+                    : 'text-white'
+                }
                 to="/blogs"
               >
                 Blogs
               </NavLink>
             </li>
-            <li tabIndex="0">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? 'px-5 py-2 bg-white text-black font-semibold rounded'
-                    : 'text-white'
-                }
-                to="/login"
-              >
-                Login
-              </NavLink>
-            </li>
-            <li tabIndex="0">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? 'px-5 py-2 bg-white text-black font-semibold rounded'
-                    : 'text-white'
-                }
-                to="/register"
-              >
-                Register
-              </NavLink>
-            </li>
+
+            {!user && (
+              <>
+                <li tabIndex="0">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'px-5 py-2 bg-white text-black font-semibold rounded'
+                        : 'text-white'
+                    }
+                    to="/login"
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li tabIndex="0">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'px-5 py-2 bg-white text-black font-semibold rounded'
+                        : 'text-white'
+                    }
+                    to="/register"
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl text-white">
@@ -76,7 +93,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex="10"
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 absolute top-12"
           >
             <li>
               <a href="!@" className="justify-between">
@@ -96,6 +113,18 @@ const Navbar = () => {
       {/* Big screen menu */}
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0 space-x-2">
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? 'px-7 py-2 bg-white text-orange-600'
+                  : 'px-7 text-white'
+              }
+              to="/"
+            >
+              Home
+            </NavLink>
+          </li>
           <li>
             <NavLink
               className={({ isActive }) =>
