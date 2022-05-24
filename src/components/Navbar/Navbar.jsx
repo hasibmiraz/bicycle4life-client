@@ -4,14 +4,17 @@ import { BsBicycle } from 'react-icons/bs';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
+import Loading from '../Shared/Loading';
 const Navbar = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
   const handleSignOut = () => {
     signOut(auth);
     navigate('/');
   };
+
+  if (loading) return <Loading />;
 
   return (
     <div className="navbar bg-orange-400 px-4 md:px-8">
@@ -88,7 +91,7 @@ const Navbar = () => {
         <div className="navbar-end flex md:hidden dropdown dropdown-end">
           <label tabIndex="10" className="btn btn-ghost btn-circle avatar ml-2">
             <div className="w-10 rounded-full">
-              <img alt="user" src={user.photoURL} />
+              <img alt="user" src={user?.photoURL} />
             </div>
           </label>
           <ul
@@ -173,7 +176,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar ml-2"
             >
               <div className="w-10 rounded-full">
-                <img alt="user" src={user.photoURL} />
+                <img alt="user" src={user?.photoURL} />
               </div>
             </label>
             <ul

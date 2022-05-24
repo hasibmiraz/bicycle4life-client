@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   useCreateUserWithEmailAndPassword,
@@ -42,6 +42,12 @@ const Register = () => {
   if (user) {
     navigate(from, { replace: true });
   }
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [from, user, navigate]);
 
   return (
     <>

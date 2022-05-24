@@ -1,8 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SingleTool = ({ part }) => {
-  const { image, name, description, minOrderQty, availableQty, unitPrice } =
-    part;
+  const {
+    _id,
+    image,
+    name,
+    description,
+    minOrderQty,
+    availableQty,
+    unitPrice,
+  } = part;
+  const navigate = useNavigate();
   return (
     <div className="card w-11/12 md:w-3/4 bg-base-100 shadow-xl mx-auto">
       <figure>
@@ -28,7 +37,10 @@ const SingleTool = ({ part }) => {
           {unitPrice}
         </p>
         <div className="card-actions justify-end">
-          <button className="btn bg-orange-400 border-none rounded hover:scale-105 duration-300">
+          <button
+            onClick={() => navigate(`/purchase/${_id}`)}
+            className="btn bg-orange-400 border-none rounded hover:scale-105 duration-300"
+          >
             Buy Now
           </button>
         </div>
