@@ -5,7 +5,9 @@ import SingleTool from './SingleTool';
 
 const Tools = () => {
   const { data: parts, isLoading } = useQuery('home-page-products', () =>
-    fetch('http://localhost:5000/part').then((res) => res.json())
+    fetch('https://stark-basin-34233.herokuapp.com/part').then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading) return <Loading />;

@@ -5,7 +5,9 @@ import HomePageReview from './HomePageReview';
 
 const HomePageReviews = () => {
   const { data: reviews, isLoading } = useQuery('home-page-reviews', () =>
-    fetch('http://localhost:5000/review').then((res) => res.json())
+    fetch('https://stark-basin-34233.herokuapp.com/review').then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading) return <Loading />;
