@@ -24,7 +24,7 @@ const AddReview = () => {
       description: e.target.review.value,
     };
 
-    fetch('http://localhost:5000/review', {
+    fetch('https://stark-basin-34233.herokuapp.com/review', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -36,6 +36,7 @@ const AddReview = () => {
         if (data.success) {
           toast.success('Review submitted!');
           setLoading(false);
+          e.target.reset();
         } else {
           toast.error('There was an error! Please try again.');
           setLoading(false);
@@ -64,7 +65,7 @@ const AddReview = () => {
         <button
           disabled={loading}
           type="submit"
-          className={`bg-orange-400 w-32 mt-6 py-3 text-white rounded hover:bg-orange-500 hover:scale-105 duration-200 ${
+          className={`btn border-none bg-orange-400 w-32 mt-6 py-3 text-white rounded hover:bg-orange-500 hover:scale-105 duration-200 ${
             loading && 'loading'
           }`}
         >
