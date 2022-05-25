@@ -1,6 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import Title from '../Title/Title';
@@ -9,28 +11,36 @@ import OrdersRow from './OrdersRow';
 
 const MyOrders = () => {
   const [deletingOrder, setDeletingOrder] = useState(null);
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
   const {
     data: orders,
     isLoading,
     refetch,
   } = useQuery('orders', () =>
-    fetch(
-      `https://stark-basin-34233.herokuapp.com/part-orders?email=${user.email}`,
-      {
-        method: 'GET',
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
+    fetch(`http://localhost:5000/part-orders?email=${user.email}`, {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    }).then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        signOut(auth);
+        localStorage.removeItem('accessToken');
+        navigate('/');
       }
-    ).then((res) => res.json())
+      return res.json();
+    })
   );
 
-  if (isLoading) return <Loading />;
+  if (isLoading || loading) return <Loading />;
 
   return (
     <div>
       <Title title="My Orders" />
+      <h1 className="text-center text-2xl font-semibold text-orange-400">
+        My orders
+      </h1>
       <div className="overflow-x-auto mx-auto mt-6">
         <table className="table table-zebra w-full">
           {/* <!-- head --> */}
