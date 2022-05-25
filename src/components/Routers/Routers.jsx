@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Blogs from '../Blogs/Blogs';
+import AddReview from '../Dashboard/AddReview';
 import Dashboard from '../Dashboard/Dashboard';
 import MyOrders from '../Dashboard/MyOrders';
 import Home from '../Home/Home';
@@ -24,6 +25,7 @@ const Routers = () => {
         }
       >
         <Route index element={<MyOrders />} />
+        <Route path="add-review" element={<AddReview />} />
       </Route>
 
       <Route

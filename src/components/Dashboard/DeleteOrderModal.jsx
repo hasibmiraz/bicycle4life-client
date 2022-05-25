@@ -20,21 +20,21 @@ const DeleteOrderModal = ({ deletingOrder, refetch, setDeletingOrder }) => {
 
   return (
     <>
-      <input type="checkbox" id="delete-order-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg text-orange-500">
+      <input type="checkbox" id="delete-order-modal" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-orange-500">
             Are you sure you want to delete {product}'s order?
           </h3>
-          <p class="py-4">Once you do this, it can not be undone!</p>
-          <div class="modal-action">
+          <p className="py-4">Once you do this, it can not be undone!</p>
+          <div className="modal-action">
             <label
               className="btn btn-error rounded"
               onClick={() => handleDelete(_id)}
             >
               Confirm
             </label>
-            <label for="delete-order-modal" class="btn rounded-md">
+            <label htmlFor="delete-order-modal" className="btn rounded-md">
               Cancel
             </label>
           </div>
