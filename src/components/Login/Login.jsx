@@ -6,11 +6,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 // import useToken from '../../hooks/useToken.js';
 import Title from '../Title/Title.jsx';
 import GoogleSignIn from '../GoogleSignIn/GoogleSignIn.jsx';
+import useToken from '../../hooks/useToken.js';
 
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  // const [token] = useToken(user);
+  const [token] = useToken(user);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,20 +25,19 @@ const Login = () => {
 
   const handleLogin = async ({ email, password }) => {
     await signInWithEmailAndPassword(email, password);
-    console.log(user);
   };
 
-  useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
-    }
-  }, [from, user, navigate]);
-
   // useEffect(() => {
-  //   if (token) {
+  //   if (user) {
   //     navigate(from, { replace: true });
   //   }
-  // }, [from, navigate, token]);
+  // }, [from, user, navigate]);
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, token]);
 
   let errorMessage;
 

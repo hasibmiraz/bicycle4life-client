@@ -5,15 +5,19 @@ import {
   useUpdateProfile,
 } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init.js';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Title from '../Title/Title.jsx';
 import GoogleSignIn from '../GoogleSignIn/GoogleSignIn.jsx';
+import useToken from '../../hooks/useToken.js';
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+  const [token] = useToken(user);
+
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -35,19 +39,11 @@ const Register = () => {
     );
   }
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  let from = location.state?.from?.pathname || '/';
-
-  if (user) {
-    navigate(from, { replace: true });
-  }
-
   useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
+    if (token) {
+      navigate('/');
     }
-  }, [from, user, navigate]);
+  }, [token, navigate]);
 
   return (
     <>
