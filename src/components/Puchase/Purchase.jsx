@@ -20,9 +20,12 @@ const Purchase = () => {
   } = useForm();
 
   const { data: part, isLoading } = useQuery('single-part', () =>
-    fetch(`https://stark-basin-34233.herokuapp.com/part/${partsId}`).then(
-      (res) => res.json()
-    )
+    fetch(`https://stark-basin-34233.herokuapp.com/part/${partsId}`, {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    }).then((res) => res.json())
   );
 
   const onSubmit = async ({ address, phone, orderQty }) => {
@@ -41,6 +44,7 @@ const Purchase = () => {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },
       body: JSON.stringify(order),
     })

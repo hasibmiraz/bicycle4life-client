@@ -7,6 +7,9 @@ const DeleteOrderModal = ({ deletingOrder, refetch, setDeletingOrder }) => {
   const handleDelete = (id) => {
     fetch(`https://stark-basin-34233.herokuapp.com/part/${id}`, {
       method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

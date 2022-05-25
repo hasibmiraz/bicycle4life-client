@@ -16,7 +16,13 @@ const MyOrders = () => {
     refetch,
   } = useQuery('orders', () =>
     fetch(
-      `https://stark-basin-34233.herokuapp.com/part-orders?email=${user.email}`
+      `https://stark-basin-34233.herokuapp.com/part-orders?email=${user.email}`,
+      {
+        method: 'GET',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      }
     ).then((res) => res.json())
   );
 
