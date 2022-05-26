@@ -9,7 +9,7 @@ const AdminOrdersRow = ({ i, order, refetch, setDeletingOrder }) => {
   const navigate = useNavigate();
 
   const shipOrder = () => {
-    fetch(`http://localhost:5000/order/${_id}`, {
+    fetch(`https://stark-basin-34233.herokuapp.com/order/${_id}`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`,

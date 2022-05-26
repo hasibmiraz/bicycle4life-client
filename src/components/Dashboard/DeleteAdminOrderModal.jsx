@@ -13,7 +13,7 @@ const DeleteAdminOrderModal = ({
   const navigate = useNavigate();
 
   const confirmDelete = (_id) => {
-    fetch(`http://localhost:5000/order/${_id}`, {
+    fetch(`https://stark-basin-34233.herokuapp.com/order/${_id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`,

@@ -12,7 +12,7 @@ const ManageOrders = () => {
     isLoading,
     refetch,
   } = useQuery('admin-all-orders', () =>
-    fetch('http://localhost:5000/all-orders', {
+    fetch('https://stark-basin-34233.herokuapp.com/all-orders', {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
