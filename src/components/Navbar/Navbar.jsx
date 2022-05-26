@@ -6,9 +6,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
 import Loading from '../Shared/Loading';
+import useAdmin from '../../hooks/useAdmin';
 const Navbar = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+  const [admin] = useAdmin(user);
 
   const handleSignOut = () => {
     signOut(auth);
@@ -90,7 +92,7 @@ const Navbar = () => {
                       ? 'px-5 py-2 bg-white text-black font-semibold rounded'
                       : 'text-white'
                   }
-                  to="/dashboard"
+                  to={admin ? '/dashboard/all-users' : '/dashboard/my-orders'}
                 >
                   Dashboard
                 </NavLink>
@@ -197,7 +199,7 @@ const Navbar = () => {
                     ? 'px-7 py-2 bg-white text-orange-600'
                     : 'px-7 text-white'
                 }
-                to="/dashboard"
+                to={admin ? '/dashboard/all-users' : '/dashboard/my-orders'}
               >
                 Dashboard
               </NavLink>

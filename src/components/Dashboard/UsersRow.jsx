@@ -1,8 +1,12 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 const UsersRow = ({ user, i, refetch }) => {
   const { email, isAdmin } = user;
+  const navigate = useNavigate();
   const makeAdmin = () => {
     fetch(`http://localhost:5000/user/admin/${email}`, {
       method: 'PUT',
@@ -10,7 +14,14 @@ const UsersRow = ({ user, i, refetch }) => {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem('accessToken');
+          signOut(auth);
+          navigate('/');
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.modifiedCount) {
           toast.success(`${email} is an admin now`);
