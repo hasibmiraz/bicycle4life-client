@@ -2,9 +2,14 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import Title from '../Title/Title';
+import AdminOrdersRow from './AdminOrdersRow';
 
 const ManageOrders = () => {
-  const { data: allOrders, isLoading } = useQuery('admin-all-orders', () =>
+  const {
+    data: allOrders,
+    isLoading,
+    refetch,
+  } = useQuery('admin-all-orders', () =>
     fetch('http://localhost:5000/all-orders', {
       method: 'GET',
       headers: {
@@ -17,7 +22,34 @@ const ManageOrders = () => {
   return (
     <div>
       <Title title="Manage Orders" />
-      {allOrders.length}
+      <div className="overflow-x-auto">
+        <table className="table table-zebra w-full">
+          {/* <!-- head --> */}
+          <thead>
+            <tr>
+              <th>Serial</th>
+              <th>User</th>
+              <th>Product</th>
+              <th>Order Quantity</th>
+              <th>Payment Status</th>
+              <th>Shipping Status</th>
+              <th>Order Status</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* <!-- row 1 --> */}
+            {allOrders.map((order, i) => (
+              <AdminOrdersRow
+                key={order._id}
+                i={i}
+                order={order}
+                refetch={refetch}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
