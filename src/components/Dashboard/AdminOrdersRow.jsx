@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
-const AdminOrdersRow = ({ i, order, refetch }) => {
+const AdminOrdersRow = ({ i, order, refetch, setDeletingOrder }) => {
   const { _id, name, product, orderQty, paid, shipped } = order;
   const navigate = useNavigate();
+
   const shipOrder = () => {
     fetch(`http://localhost:5000/order/${_id}`, {
       method: 'PUT',
@@ -31,6 +32,7 @@ const AdminOrdersRow = ({ i, order, refetch }) => {
         }
       });
   };
+
   return (
     <tr>
       <th>{i + 1}</th>
@@ -73,7 +75,13 @@ const AdminOrdersRow = ({ i, order, refetch }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-outline btn-error rounded">Delete</button>
+        <label
+          htmlFor="delete-admin-order-modal"
+          className="btn btn-outline btn-error rounded"
+          onClick={() => setDeletingOrder(order)}
+        >
+          Delete
+        </label>
       </td>
     </tr>
   );
