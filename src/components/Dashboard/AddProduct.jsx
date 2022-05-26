@@ -50,161 +50,163 @@ const AddProduct = () => {
       <h1 className="text-3xl text-orange-400 text-center font-semibold">
         Create Product
       </h1>
-      <div className="w-full max-w-xs mx-auto">
-        <label className="label">
-          <span className="label-text">Name</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Product Name"
-          className={`input input-bordered w-full max-w-xs ${
-            errors?.name?.message ? 'input-error' : ''
-          }`}
-          {...register('name', {
-            required: {
-              value: true,
-              message: 'Name is required!',
-            },
-          })}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="w-full max-w-xs mx-auto">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Product Name"
+            className={`input input-bordered w-full max-w-xs ${
+              errors?.name?.message ? 'input-error' : ''
+            }`}
+            {...register('name', {
+              required: {
+                value: true,
+                message: 'Name is required!',
+              },
+            })}
+          />
 
-        <label className="label">
-          {errors.name?.type === 'required' && (
-            <span className="label-text-alt text-red-600">
-              {errors?.name?.message}
-            </span>
-          )}
-        </label>
-      </div>
+          <label className="label">
+            {errors.name?.type === 'required' && (
+              <span className="label-text-alt text-red-600">
+                {errors?.name?.message}
+              </span>
+            )}
+          </label>
+        </div>
 
-      <div className="w-full max-w-xs mx-auto">
-        <label className="label">
-          <span className="label-text">Description</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Product description"
-          className={`input input-bordered w-full max-w-xs ${
-            errors?.description?.message ? 'input-error' : ''
-          }`}
-          {...register('description', {
-            required: {
-              value: true,
-              message: 'Description number required!',
-            },
-          })}
-        />
-        <label className="label">
-          {errors.description?.type === 'required' && (
-            <span className="label-text-alt text-red-600">
-              {errors?.description?.message}
-            </span>
-          )}
-        </label>
-      </div>
+        <div className="w-full max-w-xs mx-auto">
+          <label className="label">
+            <span className="label-text">Description</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Product description"
+            className={`input input-bordered w-full max-w-xs ${
+              errors?.description?.message ? 'input-error' : ''
+            }`}
+            {...register('description', {
+              required: {
+                value: true,
+                message: 'Description number required!',
+              },
+            })}
+          />
+          <label className="label">
+            {errors.description?.type === 'required' && (
+              <span className="label-text-alt text-red-600">
+                {errors?.description?.message}
+              </span>
+            )}
+          </label>
+        </div>
 
-      <div className="w-full max-w-xs mx-auto">
-        <label className="label">
-          <span className="label-text">Image Url</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Image url"
-          className={`input input-bordered w-full max-w-xs ${
-            errors?.img?.message ? 'input-error' : ''
-          }`}
-          {...register('img', {
-            required: {
-              value: true,
-              message: 'Image URL is required',
-            },
-          })}
-        />
-        <p className="label">
-          {errors.img?.type === 'required' && (
-            <span className="label-text-alt text-red-600">
-              {errors?.img?.message}
-            </span>
-          )}
-        </p>
-      </div>
+        <div className="w-full max-w-xs mx-auto">
+          <label className="label">
+            <span className="label-text">Image Url</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Image url"
+            className={`input input-bordered w-full max-w-xs ${
+              errors?.img?.message ? 'input-error' : ''
+            }`}
+            {...register('img', {
+              required: {
+                value: true,
+                message: 'Image URL is required',
+              },
+            })}
+          />
+          <p className="label">
+            {errors.img?.type === 'required' && (
+              <span className="label-text-alt text-red-600">
+                {errors?.img?.message}
+              </span>
+            )}
+          </p>
+        </div>
 
-      <div className="w-full max-w-xs mx-auto">
-        <label className="label">
-          <span className="label-text">Available Quantity</span>
-        </label>
-        <input
-          type="number"
-          placeholder="Available Quantity"
-          className={`input input-bordered w-full max-w-xs ${
-            errors?.aQty?.message ? 'input-error' : ''
-          }`}
-          {...register('aQty', {
-            required: {
-              value: true,
-              message: 'Quantity is required',
-            },
-          })}
-        />
-        <p className="label">
-          {errors.aQty?.type === 'required' && (
-            <span className="label-text-alt text-red-600">
-              {errors?.aQty?.message}
-            </span>
-          )}
-        </p>
-      </div>
+        <div className="w-full max-w-xs mx-auto">
+          <label className="label">
+            <span className="label-text">Available Quantity</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Available Quantity"
+            className={`input input-bordered w-full max-w-xs ${
+              errors?.aQty?.message ? 'input-error' : ''
+            }`}
+            {...register('aQty', {
+              required: {
+                value: true,
+                message: 'Quantity is required',
+              },
+            })}
+          />
+          <p className="label">
+            {errors.aQty?.type === 'required' && (
+              <span className="label-text-alt text-red-600">
+                {errors?.aQty?.message}
+              </span>
+            )}
+          </p>
+        </div>
 
-      <div className="w-full max-w-xs mx-auto">
-        <label className="label">
-          <span className="label-text">Minimum Order Quantity</span>
-        </label>
-        <input
-          type="number"
-          placeholder="Available Quantity"
-          className={`input input-bordered w-full max-w-xs ${
-            errors?.mQty?.message ? 'input-error' : ''
-          }`}
-          {...register('mQty', {
-            required: {
-              value: true,
-              message: 'Quantity is required',
-            },
-          })}
-        />
-        <p className="label">
-          {errors.mQty?.type === 'required' && (
-            <span className="label-text-alt text-red-600">
-              {errors?.mQty?.message}
-            </span>
-          )}
-        </p>
-      </div>
+        <div className="w-full max-w-xs mx-auto">
+          <label className="label">
+            <span className="label-text">Minimum Order Quantity</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Available Quantity"
+            className={`input input-bordered w-full max-w-xs ${
+              errors?.mQty?.message ? 'input-error' : ''
+            }`}
+            {...register('mQty', {
+              required: {
+                value: true,
+                message: 'Quantity is required',
+              },
+            })}
+          />
+          <p className="label">
+            {errors.mQty?.type === 'required' && (
+              <span className="label-text-alt text-red-600">
+                {errors?.mQty?.message}
+              </span>
+            )}
+          </p>
+        </div>
 
-      <div className="w-full max-w-xs mx-auto">
-        <label className="label">
-          <span className="label-text">Unit Price</span>
-        </label>
-        <input
-          type="number"
-          placeholder="Unit Price"
-          className={`input input-bordered w-full max-w-xs ${
-            errors?.price?.message ? 'input-error' : ''
-          }`}
-          {...register('price', {
-            required: {
-              value: true,
-              message: 'Unit price is required',
-            },
-          })}
-        />
-        <p className="label">
-          {errors.price?.type === 'required' && (
-            <span className="label-text-alt text-red-600">
-              {errors?.price?.message}
-            </span>
-          )}
-        </p>
+        <div className="w-full max-w-xs mx-auto">
+          <label className="label">
+            <span className="label-text">Unit Price</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Unit Price"
+            className={`input input-bordered w-full max-w-xs ${
+              errors?.price?.message ? 'input-error' : ''
+            }`}
+            {...register('price', {
+              required: {
+                value: true,
+                message: 'Unit price is required',
+              },
+            })}
+          />
+          <p className="label">
+            {errors.price?.type === 'required' && (
+              <span className="label-text-alt text-red-600">
+                {errors?.price?.message}
+              </span>
+            )}
+          </p>
+        </div>
       </div>
       <div className="w-full max-w-xs mx-auto">
         <button
