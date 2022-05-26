@@ -12,6 +12,7 @@ import Purchase from '../Puchase/Purchase';
 import Register from '../Register/Register';
 import RequireAdmin from '../RequireAdmin/RequireAdmin';
 import RequireAuth from '../RequireAuth/RequireAuth';
+import RequireUser from '../RequireUser/RequireUser';
 
 const Routers = () => {
   return (
@@ -26,8 +27,22 @@ const Routers = () => {
           </RequireAuth>
         }
       >
-        <Route path="my-orders" element={<MyOrders />} />
-        <Route path="add-review" element={<AddReview />} />
+        <Route
+          path="my-orders"
+          element={
+            <RequireUser>
+              <MyOrders />
+            </RequireUser>
+          }
+        />
+        <Route
+          path="add-review"
+          element={
+            <RequireUser>
+              <AddReview />
+            </RequireUser>
+          }
+        />
         <Route
           path="all-users"
           element={
