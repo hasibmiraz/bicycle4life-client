@@ -7,10 +7,9 @@ const useAdmin = (user) => {
   useEffect(() => {
     const email = user?.email;
     if (email) {
-      fetch(`https://stark-basin-34233.herokuapp.com/admin/${user?.email}`, {
+      fetch(`https://stark-basin-34233.herokuapp.com/admin/${email}`, {
         method: 'GET',
         headers: {
-          'content-type': 'application/json',
           authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
       })

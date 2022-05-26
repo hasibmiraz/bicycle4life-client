@@ -9,7 +9,7 @@ const DeleteAdminOrderModal = ({
   refetch,
   setDeletingOrder,
 }) => {
-  const { _id, product } = deletingOrder;
+  const { _id } = deletingOrder;
   const navigate = useNavigate();
 
   const confirmDelete = (_id) => {

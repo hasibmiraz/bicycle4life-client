@@ -5,6 +5,7 @@ import AddReview from '../Dashboard/AddReview';
 import AllUsers from '../Dashboard/AllUsers';
 import Dashboard from '../Dashboard/Dashboard';
 import ManageOrders from '../Dashboard/ManageOrders';
+import ManageProducts from '../Dashboard/ManageProducts';
 import MyOrders from '../Dashboard/MyOrders';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
@@ -57,6 +58,14 @@ const Routers = () => {
           element={
             <RequireAdmin>
               <ManageOrders />
+            </RequireAdmin>
+          }
+        />
+        <Route
+          path="manage-products"
+          element={
+            <RequireAdmin>
+              <ManageProducts />
             </RequireAdmin>
           }
         />
