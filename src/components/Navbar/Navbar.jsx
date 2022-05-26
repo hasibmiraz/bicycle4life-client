@@ -10,7 +10,7 @@ import useAdmin from '../../hooks/useAdmin';
 const Navbar = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
-  const [admin, adminLoading] = useAdmin(user);
+  const [admin] = useAdmin(user);
 
   const handleSignOut = () => {
     signOut(auth);
@@ -18,7 +18,7 @@ const Navbar = () => {
     localStorage.removeItem('accessToken');
   };
 
-  if (loading || adminLoading) return <Loading />;
+  if (loading) return <Loading />;
 
   return (
     <div className="navbar bg-orange-400 px-4 md:px-8">
