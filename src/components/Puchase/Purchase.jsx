@@ -38,6 +38,7 @@ const Purchase = () => {
       phone,
       orderQty,
       paid: false,
+      shipped: false,
     };
 
     fetch('https://stark-basin-34233.herokuapp.com/part', {
