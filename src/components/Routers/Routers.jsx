@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Blogs from '../Blogs/Blogs';
+import AddProduct from '../Dashboard/AddProduct';
 import AddReview from '../Dashboard/AddReview';
 import AllUsers from '../Dashboard/AllUsers';
 import Dashboard from '../Dashboard/Dashboard';
@@ -50,6 +51,14 @@ const Routers = () => {
           element={
             <RequireAdmin>
               <AllUsers />
+            </RequireAdmin>
+          }
+        />
+        <Route
+          path="add-product"
+          element={
+            <RequireAdmin>
+              <AddProduct />
             </RequireAdmin>
           }
         />
